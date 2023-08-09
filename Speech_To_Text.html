@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice to Text Converter</title>
+</head>
+<body>
+    <h1>Voice to Text Converter</h1>
+    <textarea id="speechToText" rows="4" cols="50"></textarea>
+    <button onclick="voice()">Voice to Text</button>
+
+    <script>
+        function voice() {
+            var recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+            recognition.lang = "en-GB";
+            
+            recognition.onresult = function (event) {
+                console.log(event);
+                document.getElementById("speechToText").value =
+                    event.results[0][0].transcript;
+            };
+            
+            recognition.start();
+        }
+    </script>
+</body>
+</html>
